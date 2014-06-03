@@ -3,6 +3,7 @@
 	<name>KanbanWeb</name>
 	<comment></comment>
 	<projects>
+		<project>electrocucaracha</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
