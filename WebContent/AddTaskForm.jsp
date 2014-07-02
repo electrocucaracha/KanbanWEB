@@ -7,9 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add task</title>
 <%@ include file="Copyright.jspf"%>
+<script>
+	function validate() {
+		var title = document.forms["task_form"]["title"].value;
+		if (!title) {
+			alert("Title empty!!!");
+			return false;
+		}
+
+		return true;
+	}
+</script>
 </head>
 <body>
-	<form method="POST" action="AddTaskServlet">
+	<form name="task_form" method="POST" action="AddTaskServlet"
+		onsubmit="return validate()">
 		<table>
 			<tr>
 				<td>Title:</td>
@@ -23,10 +35,14 @@
 				<td>State:</td>
 				<td><select name="state">
 						<%-- State values added dynamically --%>
-						<%		for (State state : State.values()) { %>
-						<option value="<%= state.name() %>">
-							<%= state %></option>
-						<% } %>
+						<%
+							for (State state : State.values()) {
+						%>
+						<option value="<%=state.name()%>">
+							<%=state%></option>
+						<%
+							}
+						%>
 				</select></td>
 			</tr>
 			<tr>
@@ -44,7 +60,7 @@
 			<tr>
 				<td>Due date:</td>
 				<td><input type="text" name="due_date"
-					value="<%= new Date().toString()%>" /></td>
+					value="<%=new Date().toString()%>" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Add" /></td>
